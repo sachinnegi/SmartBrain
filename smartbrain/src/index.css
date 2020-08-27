@@ -1,0 +1,14 @@
+body {
+  margin: 0;
+  padding:0;
+  box-sizing: border-box;
+  font-family: 'Courier New', Courier, monospace;
+  /* background-color: #026873; */
+  /* background-color: #01bcd1; */
+  background-color: #0895a5;
+  /* background: linear-gradient(to right, rgb(251, 121, 121), rgba(47, 47, 247, 0.788)); */
+  
+}
+button{
+  cursor: pointer;
+}
