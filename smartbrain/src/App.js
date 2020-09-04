@@ -82,6 +82,8 @@ class App extends Component{
         }
     }
 
+    
+
     onInputChange = (event)=>{
         this.setState({input:event.target.value});
     }
@@ -137,8 +139,7 @@ class App extends Component{
     return(
       <div className='App'>
         
-        <Particles className = "particle" 
-          params={particleoptions} />
+        {/*  <Particles className = "particle" params={particleoptions} />  */}
         
         <Navigation isSigned={this.state.isSigned} onRouteChange={this.onRouteChange }/>
         

@@ -1,7 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const app = express();
+
+app.use(cors())
 app.use(bodyParser.json());
 
 const database = {
@@ -82,6 +85,6 @@ app.put('/image', (req, res) => {
     res.status(404).json('user not found');
 })
 
-app.listen(3000,()=>{
+app.listen(3001,()=>{
     console.log('woooo started have fun');
 });
