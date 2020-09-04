@@ -19,14 +19,18 @@ const SignIn = ({onRouteChange})=>{
         console.log(signInEmail, signInPassword);
         fetch('http://localhost:3001/signin',{
             method: 'post',
-            headers: {"Content-type" : 'application/json'},
+            headers: {"Content-Type" : 'application/json'},
             body: JSON.stringify({
-                name : "sachin",
-                password : "12345"
+                "name" : signInEmail,
+                "password" : signInPassword
             })
+        })
+        .then(response => response.json() )
+        .then (data => {
+            if (data === "sucess in"){
+                onRouteChange('home');
             }
-        )
-        onRouteChange('home');
+        })
     }
 
 
