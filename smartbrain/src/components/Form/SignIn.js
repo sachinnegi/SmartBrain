@@ -17,6 +17,15 @@ const SignIn = ({onRouteChange})=>{
 
     function onSubmitButton(){
         console.log(signInEmail, signInPassword);
+        fetch('http://localhost:3001/signin',{
+            method: 'post',
+            headers: {"Content-type" : 'application/json'},
+            body: JSON.stringify({
+                name : "sachin",
+                password : "12345"
+            })
+            }
+        )
         onRouteChange('home');
     }
 
