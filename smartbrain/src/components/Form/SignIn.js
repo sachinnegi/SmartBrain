@@ -1,6 +1,21 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 const SignIn = ({onRouteChange})=>{
+
+    const [singnInEmail, setSignInEmail] = useState('');
+    const [signInPassword, setSignInPassword] = useState('');
+
+    function onEmailChange(event){
+        console.log(event.target.value)
+        setSignInEmail(event.target.value);
+    }
+
+    function onPasswordChange(event){
+        console.log(event.target.value)
+        setSignInPassword(event.target.value)
+    }
+
+
     return(
         <article className="bw1 br2 ba  b--black-10 mv6 w-90 w-60-m w-25-l mw6 center br2 shadow-5">
             <main className=" pa4 black-80 ">
@@ -9,11 +24,23 @@ const SignIn = ({onRouteChange})=>{
                         <legend className="f2 fw6 ph0 mh0">Sign In</legend>
                         <div className="mt3">
                             <label className="db fw6 lh-copy f4" htmlFor="email-address">Email</label>
-                            <input className="bw1 br2 b--black pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="email" name="email-address"  id="email-address" />
+                            <input
+                                onChange = {onEmailChange} 
+                                className="bw1 br2 b--black pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" 
+                                type="email" 
+                                name="email-address"  
+                                id="email-address" 
+                            />
                         </div>
                         <div className="mv3">
                             <label className="db fw6 lh-copy f4" htmlFor="password">Password</label>
-                            <input className="bw1 b--black br2 b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="password" name="password"  id="password" />
+                            <input
+                                onChange = {onPasswordChange} 
+                                className="bw1 b--black br2 b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" 
+                                type="password" 
+                                name="password"  
+                                id="password" 
+                            />
                         </div>
                         
                     </fieldset>
