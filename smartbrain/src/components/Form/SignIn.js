@@ -2,17 +2,22 @@ import React, {useState} from 'react';
 
 const SignIn = ({onRouteChange})=>{
 
-    const [singnInEmail, setSignInEmail] = useState('');
+    const [signInEmail, setSignInEmail] = useState('');
     const [signInPassword, setSignInPassword] = useState('');
 
     function onEmailChange(event){
-        console.log(event.target.value)
+        // console.log(event.target.value)
         setSignInEmail(event.target.value);
     }
 
     function onPasswordChange(event){
-        console.log(event.target.value)
+        // console.log(event.target.value)
         setSignInPassword(event.target.value)
+    }
+
+    function onSubmitButton(){
+        console.log(signInEmail, signInPassword);
+        onRouteChange('home');
     }
 
 
@@ -46,7 +51,7 @@ const SignIn = ({onRouteChange})=>{
                     </fieldset>
                     <div className="">
                         <input 
-                        onClick = {() => onRouteChange('home')}
+                        onClick = {onSubmitButton}
                         className="br2 shadow-2 b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f5 dib" type="submit" value="Sign in" />
                         </div>
                         <div className="lh-copy mt3">
