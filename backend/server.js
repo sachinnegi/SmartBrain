@@ -57,7 +57,7 @@ app.post('/register', (req, res) =>{
             joined: new Date()
         }
     )
-    res.json('successfully registered');
+    res.json(database.users[database.users.length-1]);
 })
 
 

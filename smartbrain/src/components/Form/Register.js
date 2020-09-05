@@ -4,7 +4,7 @@ const Form = ({onRouteChange})=>{
 
     const [registerName, setName]  = useState('');
     const [registerEmail, setEmail ] = useState('');
-    const [registerPassowrd, setPassword] = useState('');
+    const [registerPassword, setPassword] = useState('');
 
     function getName(event){
         setName(event.target.value);
@@ -19,7 +19,18 @@ const Form = ({onRouteChange})=>{
     }
 
     function onSubmitButton(){
-        console.log(registerName, registerPassowrd, registerEmail);
+        console.log(registerName, registerPassword, registerEmail);
+        fetch('http://localhost:3001/register',{
+            method : 'post',
+            headers: {"Content-Type" : "application/json"},
+            body : JSON.stringify({
+                "name" : registerName,
+                "email" : registerEmail,
+                "password" : registerPassword
+            })
+        })
+         .then(response => response.json())
+            .then(console.log)
         onRouteChange('home');
     }
 
