@@ -1,6 +1,23 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 const Form = ({onRouteChange})=>{
+
+    const [registerName, setName]  = useState('');
+    const [registerEmail, setEmail ] = useState('');
+    const [registerPassowrd, setPassword] = useState('');
+
+    function getName(event){
+        setName(event.target.value);
+    }
+
+    function getEmail(event){
+        setEmail(event.target.value);
+    }
+
+    function getPassword(event){
+        setPassword(event.target.value);
+    }
+
     return(
         <article className="bw1 br2 ba  b--black-10 mv6 w-90 w-60-m w-25-l mw6 center br2 shadow-5">
             <main className=" pa4 black-80 ">
@@ -9,15 +26,30 @@ const Form = ({onRouteChange})=>{
                         <legend className="f2 fw6 ph0 mh0">Sign Up</legend>
                         <div className="mt3">
                             <label className="db fw6 lh-copy f4" htmlFor="email-address">Email</label>
-                            <input className="bw1 br2 b--black pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="email" name="email-address"  id="email-address" />
+                            <input 
+                                onChange = {getEmail}
+                                className="bw1 br2 b--black pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" 
+                                type="email" 
+                                name="email-address"  
+                                id="email-address" />
                         </div>
                         <div className="mt3">
                             <label className="db fw6 lh-copy f4" htmlFor="name">Name</label>
-                            <input className="bw1 br2 b--black pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="name" name="name"  id="name" />
+                            <input 
+                                onChange = {getName}
+                                className="bw1 br2 b--black pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" 
+                                type="name" 
+                                name="name"  
+                                id="name" />
                         </div>
                         <div className="mv3">
                             <label className="db fw6 lh-copy f4" htmlFor="password">Password</label>
-                            <input className="bw1 b--black br2 b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="password" name="password"  id="password" />
+                            <input 
+                                onChange = {getPassword}
+                                className="bw1 b--black br2 b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" 
+                                type="password" 
+                                name="password"  
+                                id="password" />
                         </div>
                         
                     </fieldset>
