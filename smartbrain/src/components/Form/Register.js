@@ -18,6 +18,11 @@ const Form = ({onRouteChange})=>{
         setPassword(event.target.value);
     }
 
+    function onSubmitButton(){
+        console.log(registerName, registerPassowrd, registerEmail);
+        onRouteChange('home');
+    }
+
     return(
         <article className="bw1 br2 ba  b--black-10 mv6 w-90 w-60-m w-25-l mw6 center br2 shadow-5">
             <main className=" pa4 black-80 ">
@@ -55,7 +60,7 @@ const Form = ({onRouteChange})=>{
                     </fieldset>
                         <div className="">
                             <input 
-                            onClick = {()=> onRouteChange('home')}
+                            onClick = {onSubmitButton}
                             className="br2 shadow-2 b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" type="submit" value="Register" />
                         </div>
                         
