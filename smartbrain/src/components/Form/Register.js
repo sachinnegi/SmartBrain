@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-const Form = ({onRouteChange})=>{
+const Form = ({loadUser, onRouteChange})=>{
 
     const [registerName, setName]  = useState('');
     const [registerEmail, setEmail ] = useState('');
@@ -30,8 +30,12 @@ const Form = ({onRouteChange})=>{
             })
         })
          .then(response => response.json())
-            .then(console.log)
-        onRouteChange('home');
+            .then(user =>{
+                if (user){
+                    onRouteChange('home');
+                    loadUser(user);
+                }
+            })
     }
 
     return(

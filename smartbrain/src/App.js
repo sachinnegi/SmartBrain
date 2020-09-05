@@ -79,10 +79,28 @@ class App extends Component{
             imgConcepts : 'default',
             route : 'signin',
             isSigned: false,
+            user : {
+                id : '',
+                name : '',
+                email: '',
+                entries: 0,
+                joined : ''
+            },
         }
     }
 
     
+    loadUser = (data) =>{
+        this.setState({user:{
+            id : data.id,
+            name : data.name,
+            email: data.email,
+            entries: data.entries,
+            joned : data.joined
+        }})
+
+        console.log(this.state.user);
+    }
 
     onInputChange = (event)=>{
         this.setState({input:event.target.value});
@@ -146,7 +164,7 @@ class App extends Component{
         { this.state.route === 'signin'
             ? <SignIn onRouteChange={this.onRouteChange}/>
             : this.state.route === 'register'
-                ? <Register onRouteChange={this.onRouteChange}/>
+                ? <Register loadUser = {this.loadUser} onRouteChange={this.onRouteChange}/>
                 : <div>
                     <Logo/>
                     <Rank/>
