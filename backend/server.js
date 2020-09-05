@@ -37,7 +37,7 @@ app.get('/',(req, res)=>{
 app.post('/signin', (req, res) =>{
 
     if (req.body.name === "sachin" && req.body.password === '12345'){
-        res.json('sucess in');
+        res.json(database.users[0]);
     }
     else{
         res.status(404).json('failed you cannot be send inside');

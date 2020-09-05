@@ -162,7 +162,7 @@ class App extends Component{
         <Navigation isSigned={this.state.isSigned} onRouteChange={this.onRouteChange }/>
         
         { this.state.route === 'signin'
-            ? <SignIn onRouteChange={this.onRouteChange}/>
+            ? <SignIn loadUser ={this.loadUser} onRouteChange={this.onRouteChange}/>
             : this.state.route === 'register'
                 ? <Register loadUser = {this.loadUser} onRouteChange={this.onRouteChange}/>
                 : <div>
