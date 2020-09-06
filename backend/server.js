@@ -78,7 +78,7 @@ app.put('/image', (req, res) => {
     database.users.forEach(user => {
         if ( user.id === id){
             user.entries++;
-            res.json(user);
+            res.json(user.entries);
             return
         }
     })
