@@ -19,7 +19,7 @@ const Form = ({loadUser, onRouteChange})=>{
     }
 
     function onSubmitButton(){
-        console.log(registerName, registerPassword, registerEmail);
+        
         fetch('http://localhost:3001/register',{
             method : 'post',
             headers: {"Content-Type" : "application/json"},

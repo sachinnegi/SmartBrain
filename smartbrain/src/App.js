@@ -99,7 +99,7 @@ class App extends Component{
             joned : data.joined
         }})
 
-        console.log(this.state.user);
+        
     }
 
     onInputChange = (event)=>{
@@ -146,7 +146,25 @@ class App extends Component{
         this.setState({imgUrl:this.state.input})
        
         app.models.predict("c0c0ac362b03416da06ab3fa36fb58e3", this.state.input).then(
-            (response) => ( this.setImageConcept(this.getData(response))),
+            (response) => {
+                this.setImageConcept(this.getData(response));
+        
+                if (response){
+                    
+                    fetch('http://localhost:3001/image',{
+                        method : 'put',
+                        headers: {'Content-Type' : 'application/json'},
+                        body : JSON.stringify({
+                            id: this.state.user.id
+                        })
+                    })
+                    .then(response => response.json())
+                        .then(count =>{
+                            console.log(count);
+                            this.setState( Object.assign( this.state.user, {entries:count}) )
+                        })
+                }
+            },
             (err) => (console.log(err))
             
         );
@@ -167,7 +185,7 @@ class App extends Component{
                 ? <Register loadUser = {this.loadUser} onRouteChange={this.onRouteChange}/>
                 : <div>
                     <Logo/>
-                    <Rank/>
+                    <Rank name={this.state.user.name} entries ={this.state.user.entries} />
                     <ImageLinkForm onInputChange={this.onInputChange} onButtonSubmit={this.onButtonSubmit} />
                     <DetailBox details={this.state.imgConcepts}/>
                     <FaceRecognition url={this.state.imgUrl}/>
