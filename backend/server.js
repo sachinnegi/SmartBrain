@@ -61,12 +61,17 @@ app.post('/signin', (req, res) =>{
 //REGISTER  
 app.post('/register', (req, res) =>{
     const {name,email,password} = req.body;
-    db('users').insert({
-        email: email,
-        name: name,
-        joined: new Date()
-    }).then(console.log)
-    res.json(database.users[database.users.length-1]);
+    db('users')
+        .returning ('*')
+        .insert({
+            email: email,
+            name: name,
+            joined: new Date()
+        })
+        .then(user =>{
+            res.json(user[0]);
+        })
+        .catch((error) => res.status(400).json(error));
 })
 
 
@@ -94,6 +99,6 @@ app.put('/image', (req, res) => {
     res.status(404).json('user not found');
 })
 
-app.listen(5001,()=>{
+app.listen(3001,()=>{
     console.log('woooo started have fun');
 });
