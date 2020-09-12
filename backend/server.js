@@ -12,6 +12,7 @@ const postgres = knex({
       database : 'smarbrain'
     }
   });
+  
 
 console.log(postgres.select('*').from('users')); 
   

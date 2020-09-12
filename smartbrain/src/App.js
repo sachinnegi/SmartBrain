@@ -162,6 +162,7 @@ class App extends Component{
                         .then(count =>{
                             console.log(count);
                             this.setState( Object.assign( this.state.user, {entries:count}) )
+                            // Object.assign( this.state.user, {entries:count})
                         })
                 }
             },
