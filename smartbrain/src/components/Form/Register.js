@@ -32,7 +32,6 @@ const Form = ({loadUser, onRouteChange})=>{
          .then(response => response.json())
             .then(user =>{
                 if (user){
-                    console.log(user);
                     onRouteChange('home');
                     loadUser(user);
                 }
