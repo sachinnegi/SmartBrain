@@ -3,18 +3,18 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const knex = require('knex')
 
-const postgres = knex({
+const db = knex({
     client: 'pg',
     connection: {
       host : '127.0.0.1',
       user : 'sachin',
-      password : '',
-      database : 'smarbrain'
+      password : 'sachinpassword',
+      database : 'smartbrain'
     }
   });
   
 
-console.log(postgres.select('*').from('users')); 
+// console.log(postgres.select('*').from('users')); 
   
 const app = express();
 
@@ -47,7 +47,7 @@ app.get('/',(req, res)=>{
     res.send(database.users);
 })
 
-
+//SIGN IN
 app.post('/signin', (req, res) =>{
 
     if (req.body.name === "sachin" && req.body.password === '12345'){
@@ -58,19 +58,14 @@ app.post('/signin', (req, res) =>{
     }
 })
 
-
+//REGISTER  
 app.post('/register', (req, res) =>{
     const {name,email,password} = req.body;
-    database.users.push(
-        {
-            id: '127',
-            name: name,
-            password: password,
-            email: email,
-            entries: 0,
-            joined: new Date()
-        }
-    )
+    db('users').insert({
+        email: email,
+        name: name,
+        joined: new Date()
+    }).then(console.log)
     res.json(database.users[database.users.length-1]);
 })
 
@@ -99,6 +94,6 @@ app.put('/image', (req, res) => {
     res.status(404).json('user not found');
 })
 
-app.listen(3001,()=>{
+app.listen(5001,()=>{
     console.log('woooo started have fun');
 });
