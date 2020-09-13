@@ -92,14 +92,14 @@ app.get('/profile/:id', (req,res) => {
 
 app.put('/image', (req, res) => {
     const {id} = req.body;
-    database.users.forEach(user => {
-        if ( user.id === id){
-            user.entries++;
-            res.json(user.entries);
-            return
-        }
+    db('users')
+    .where('id', '=', 1)
+    .increment('entries',1)
+    .returning('entries')
+    .then(entries=>{
+        res.json(entries[0]);
     })
-    res.status(404).json('user not found');
+    .catch(error => res.status(400).json('problem'))
 })
 
 app.listen(3001,()=>{
