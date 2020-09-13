@@ -29,9 +29,15 @@ const Form = ({loadUser, onRouteChange})=>{
                 "password" : registerPassword
             })
         })
-         .then(response => response.json())
+         .then(response => {
+             if (response.status!==400){
+                console.log(response.status)
+                return response.json();
+             }
+            })
             .then(user =>{
                 if (user){
+                    console.log(user);
                     onRouteChange('home');
                     loadUser(user);
                 }

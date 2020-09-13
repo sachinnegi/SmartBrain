@@ -77,13 +77,16 @@ app.post('/register', (req, res) =>{
 
 app.get('/profile/:id', (req,res) => {
     const { id } = req.params;
-    database.users.forEach(user => {
-        if (user.id === id){
-            res.json(user);
-            return
-        } 
-    });
-    res.status(404).json('user not found');
+    db.select('*').from('users').where({id})
+        .then(user=>{
+            if (user.length==0){
+                res.status(400).json('Not Found')
+            }
+            else{
+            res.json(user[0])
+            }
+        })
+        .catch(error=> res.status(400).json(error));
 })
 
 
