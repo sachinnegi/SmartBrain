@@ -21,13 +21,14 @@ const SignIn = ({loadUser,onRouteChange})=>{
             method: 'post',
             headers: {"Content-Type" : 'application/json'},
             body: JSON.stringify({
-                "name" : signInEmail,
+                "email" : signInEmail,
                 "password" : signInPassword
             })
         })
         .then(response => response.json() )
         .then (data => {
             if (data.id){
+                // console.log(data);
                 loadUser(data);
                 onRouteChange('home');
             }
@@ -65,8 +66,11 @@ const SignIn = ({loadUser,onRouteChange})=>{
                     </fieldset>
                     <div className="">
                         <input 
-                        onClick = {onSubmitButton}
-                        className="br2 shadow-2 b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f5 dib" type="submit" value="Sign in" />
+                            onClick = {onSubmitButton}
+                            className="br2 shadow-2 b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f5 dib" 
+                            type="submit" 
+                            value="Sign in" 
+                        />
                         </div>
                         <div className="lh-copy mt3">
                         <a onClick = {()=> onRouteChange('register')} href="#0" className="f5 fw6  link dim black db">Sign up</a>
