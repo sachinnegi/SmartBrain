@@ -7,6 +7,8 @@ const knex = require('knex');
 
 const register = require('./Controllers/Register');
 const signin = require('./Controllers/Siginin');
+const profile = require('./Controllers/profile');
+const image = require('./Controllers/image');
 
 const app = express();
 app.use(cors())
@@ -37,30 +39,11 @@ app.post('/signin', (req,res) => {signin.handleSignin(req, res, db, bcrypt)} )
 //REGISTER  
 app.post('/register', (req,res) => {register.handleRegister(req, res, db, bcrypt)} )
 
+//put
+app.get('/profile/:id',(req,res) => { profile.handleProfileGet(req,res,db)} )
 
-app.get('/profile/:id', (req,res) => {
-    const { id } = req.params;
-    database.users.forEach(user => {
-        if (user.id === id){
-            res.json(user);
-            return
-        } 
-    });
-    res.status(404).json('user not found');
-})
-
-
-app.put('/image', (req, res) => {
-    const {id} = req.body;
-    database.users.forEach(user => {
-        if ( user.id === id){
-            user.entries++;
-            res.json(user.entries);
-            return
-        }
-    })
-    res.status(404).json('user not found');
-})
+//image entries
+app.put('/image', (req,res) => {image.handleImage(req,res,db)})
 
 app.listen(3001,()=>{
     console.log('woooo started have fun');
