@@ -22,7 +22,7 @@ const db = knex({
       password : 'sachinpassword',
       database : 'smartbrain'
     }
-  });
+  });g
   
   
 
