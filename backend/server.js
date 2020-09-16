@@ -26,9 +26,6 @@ const db = knex({
   
   
 
-
-
-
 app.get('/',(req, res)=>{
     res.send(database.users);
 })
